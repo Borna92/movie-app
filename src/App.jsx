@@ -2,7 +2,7 @@ import { useState, useEffect, createContext } from 'react';
 import './App.css';
 import Header from './Header';
 import Movie from './Movie';
-import Footer from './footer';
+import Footer from './Footer';
 import Axios from 'axios';
 import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
