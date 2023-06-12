@@ -57,7 +57,14 @@ body {
   width: 100%;
   border-radius: 20px 20px 0 0;
   cursor: pointer;
+  display: block;
 }
+/* .movie img a {
+  text-decoration: 'none';
+  display: 'inline-block';
+  margin: 0;
+  padding: 0;
+} */
 
 .movie .title {
   display: flex;
