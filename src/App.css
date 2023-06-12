@@ -59,12 +59,6 @@ body {
   cursor: pointer;
   display: block;
 }
-/* .movie img a {
-  text-decoration: 'none';
-  display: 'inline-block';
-  margin: 0;
-  padding: 0;
-} */
 
 .movie .title {
   display: flex;
