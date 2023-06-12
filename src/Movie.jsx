@@ -1,4 +1,9 @@
-function Movie({ data, TRAILER, IMGPATH }) {
+import { useContext } from 'react';
+import { AppContext } from './App';
+
+function Movie() {
+  const { data, TRAILER, IMGPATH } = useContext(AppContext);
+
   function getColor(average) {
     if (average > 7) {
       return 'green';
@@ -20,7 +25,7 @@ function Movie({ data, TRAILER, IMGPATH }) {
             <div className="title">
               <h4>{title}</h4>
               <span style={{ color: getColor(vote_average) }}>
-                {vote_average} <i className="fa-solid fa-star"></i>
+                {vote_average.toFixed(1)} <i className="fa-solid fa-star"></i>
               </span>
             </div>
           </div>

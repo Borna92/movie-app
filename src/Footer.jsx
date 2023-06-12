@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { AppContext } from './App';
 
 function Footer() {
-  const [page, setPage] = useState(1);
+  const { page, setPage } = useContext(AppContext);
 
   function handlePage(input) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     input === 'increase'
       ? setPage(page + 1)
       : page > 1
