@@ -88,6 +88,10 @@ body {
   cursor: pointer;
 }
 
+.movie .title h4 {
+  margin: 0 0.5rem;
+}
+
 .movie .title span {
   background-color: #373b69;
   padding: 0.5rem;
