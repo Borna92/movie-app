@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useRef } from 'react';
 import './App.css';
 import Header from './Header';
 import Movie from './Movie';
@@ -16,18 +16,19 @@ const SEARCHAPI =
 export const AppContext = createContext();
 
 function App() {
+  const inputRef = useRef();
   const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem('favorites')) || []
+  );
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
 
-  const url = searchTerm ? SEARCHAPI + searchTerm : APIURL + page;
-
   useEffect(() => {
-    fetchData();
-  }, [url]);
+    fetchData(APIURL + page);
+  }, []);
 
-  function fetchData() {
+  function fetchData(url) {
     Axios.get(url)
       .then((res) => {
         const responseData = res.data.results;
@@ -69,14 +70,17 @@ function App() {
       </button>
       <AppContext.Provider
         value={{
-          setSearchTerm,
-          searchTerm,
           fetchData,
           data,
           TRAILER,
           IMGPATH,
           setPage,
           page,
+          inputRef,
+          fetchData,
+          SEARCHAPI,
+          setFavorites,
+          favorites,
         }}
       >
         <Header />

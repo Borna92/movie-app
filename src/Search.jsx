@@ -1,13 +1,13 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { AppContext } from './App';
 
 function Search() {
-  const [term, setTerm] = useState('');
-  const { setSearchTerm } = useContext(AppContext);
+  const { inputRef, fetchData, SEARCHAPI } = useContext(AppContext);
 
   function handleForm(e) {
     e.preventDefault();
-    setSearchTerm(term);
+    const url = inputRef.current && SEARCHAPI + inputRef.current.value;
+    fetchData(url);
   }
 
   return (
@@ -16,7 +16,7 @@ function Search() {
         <input
           type="text"
           className="search"
-          onChange={(e) => setTerm(e.target.value)}
+          ref={inputRef}
           placeholder="Search Movies"
           autoComplete="off"
         />
