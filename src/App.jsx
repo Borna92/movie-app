@@ -23,6 +23,7 @@ function App() {
   );
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
     fetchData(APIURL + page);
@@ -77,14 +78,20 @@ function App() {
           setPage,
           page,
           inputRef,
-          fetchData,
           SEARCHAPI,
           setFavorites,
           favorites,
+          setShowFavorites,
+          showFavorites,
         }}
       >
         <Header />
-        <Movie />
+        {showFavorites ? (
+          <Movie dataToUse={favorites} />
+        ) : (
+          <Movie dataToUse={data} />
+        )}
+
         <Footer />
       </AppContext.Provider>
     </>

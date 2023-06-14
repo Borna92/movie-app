@@ -2,10 +2,12 @@ import { useContext } from 'react';
 import { AppContext } from './App';
 
 function Search() {
-  const { inputRef, fetchData, SEARCHAPI } = useContext(AppContext);
+  const { inputRef, fetchData, SEARCHAPI, setShowFavorites } =
+    useContext(AppContext);
 
   function handleForm(e) {
     e.preventDefault();
+    setShowFavorites(false);
     const url = inputRef.current && SEARCHAPI + inputRef.current.value;
     fetchData(url);
   }

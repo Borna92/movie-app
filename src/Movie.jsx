@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { AppContext } from './App';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
-function Movie() {
+function Movie({ dataToUse }) {
   const { data, TRAILER, IMGPATH, setFavorites, favorites } =
     useContext(AppContext);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
@@ -39,7 +39,7 @@ function Movie() {
 
   return (
     <div className="movies-container">
-      {data.map(({ id, title, poster_path, vote_average, overview }) => {
+      {dataToUse.map(({ id, title, poster_path, vote_average, overview }) => {
         const isSelected = id === selectedMovieId;
         const isFavorite = favorites.some((movie) => movie.id === id);
 
