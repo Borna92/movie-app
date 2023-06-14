@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     fetchData(APIURL + page);
-  }, []);
+  }, [page]);
 
   function fetchData(url) {
     Axios.get(url)
