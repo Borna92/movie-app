@@ -15,13 +15,15 @@ function Footer() {
 
   return (
     <div className="footer">
-      <button
-        onClick={() => {
-          handlePage('decrease');
-        }}
-      >
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
+      {page > 1 && (
+        <button
+          onClick={() => {
+            handlePage('decrease');
+          }}
+        >
+          <i className="fa-solid fa-chevron-left"></i>
+        </button>
+      )}
       Page {page}
       <button
         onClick={() => {

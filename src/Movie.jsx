@@ -48,10 +48,18 @@ function Movie({ dataToUse }) {
             <a href={TRAILER + title + ' trailer'} target="_blank">
               <img src={IMGPATH + poster_path} alt={title} />
             </a>
-            <div className="title" onClick={() => handleClick(id)}>
+            <div className="title">
               {!isSelected ? (
                 <>
-                  <h4>{title}</h4>
+                  <div className="title-button">
+                    <h4>{title}</h4>
+                    <button
+                      className="info-btn"
+                      onClick={() => handleClick(id)}
+                    >
+                      More Info
+                    </button>
+                  </div>
                   <span style={{ color: getColor(vote_average) }}>
                     {vote_average.toFixed(1)}{' '}
                     <i className="fa-solid fa-star"></i>
@@ -60,15 +68,19 @@ function Movie({ dataToUse }) {
               ) : (
                 <div className="no-select">
                   Movie Overview: <p>{overview}</p>
+                  <button className="info-btn" onClick={() => handleClick(id)}>
+                    Less Info
+                  </button>
                 </div>
               )}
             </div>
             {isFavorite ? (
-              <button onClick={() => removeFromFavorites(id)}>
+              <button className="btn" onClick={() => removeFromFavorites(id)}>
                 <AiFillHeart />
               </button>
             ) : (
               <button
+                className="btn"
                 onClick={() =>
                   addToFavorites(id, title, poster_path, vote_average, overview)
                 }

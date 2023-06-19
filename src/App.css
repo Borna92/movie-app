@@ -62,7 +62,32 @@ body {
   display: block;
 }
 
-.movie button {
+.movie .info-btn {
+  background: #373b69;
+  border-radius: 28px;
+  font-weight: bolder;
+  text-shadow: 0px 1px 3px #666666;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.3rem 0.7rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Poppins', 'sans-serif';
+}
+.movie .info-btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.movie .title-button {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+}
+
+.movie .btn {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -85,7 +110,6 @@ body {
   color: #fff;
   padding: 1rem;
   border-radius: 0 0 20px 20px;
-  cursor: pointer;
 }
 
 .movie .title h4 {
