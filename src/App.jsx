@@ -15,6 +15,8 @@ const APIURL =
 const IMGPATH = 'https://image.tmdb.org/t/p/w1280';
 const SEARCHAPI =
   'https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=';
+const SHOWSAPI =
+  'https://api.themoviedb.org/3/discover/tv?include_adult=false&language=en-US&sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=';
 
 export const AppContext = createContext();
 
@@ -24,12 +26,13 @@ function App() {
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem('favorites')) || []
   );
+  const [showShows, setShowShows] = useState(false);
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
-    fetchData(APIURL + page);
+    showShows ? fetchData(SHOWSAPI + page) : fetchData(APIURL + page);
   }, [page]);
 
   function notify(value, movieName) {
@@ -95,6 +98,7 @@ function App() {
           setShowFavorites,
           showFavorites,
           notify,
+          setShowShows,
         }}
       >
         <ToastContainer autoClose={1000} transition={Zoom} />

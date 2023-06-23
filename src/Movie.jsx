@@ -41,61 +41,73 @@ function Movie({ dataToUse }) {
 
   return (
     <div className="movies-container">
-      {dataToUse.map(({ id, title, poster_path, vote_average, overview }) => {
-        const isSelected = id === selectedMovieId;
-        const isFavorite = favorites.some((movie) => movie.id === id);
+      {dataToUse.map(
+        ({ id, title, name, poster_path, vote_average, overview }) => {
+          const isSelected = id === selectedMovieId;
+          const isFavorite = favorites.some((movie) => movie.id === id);
+          const movieTitle = title || name;
 
-        return (
-          <div className="movie" key={id}>
-            <a href={TRAILER + title + ' trailer'} target="_blank">
-              <img src={IMGPATH + poster_path} alt={title} />
-            </a>
-            <div className="title">
-              {!isSelected ? (
-                <>
-                  <div className="title-button">
-                    <h4>{title}</h4>
+          return (
+            <div className="movie" key={id}>
+              <a href={TRAILER + title + ' trailer'} target="_blank">
+                <img src={IMGPATH + poster_path} alt={movieTitle} />
+              </a>
+              <div className="title">
+                {!isSelected ? (
+                  <>
+                    <div className="title-button">
+                      <h4>{movieTitle}</h4>
+                      <button
+                        className="info-btn"
+                        onClick={() => handleClick(id)}
+                      >
+                        More Info
+                      </button>
+                    </div>
+                    <span style={{ color: getColor(vote_average) }}>
+                      {vote_average.toFixed(1)}{' '}
+                      <i className="fa-solid fa-star"></i>
+                    </span>
+                  </>
+                ) : (
+                  <div className="no-select">
+                    Overview: <p>{overview}</p>
                     <button
                       className="info-btn"
                       onClick={() => handleClick(id)}
                     >
-                      More Info
+                      Less Info
                     </button>
                   </div>
-                  <span style={{ color: getColor(vote_average) }}>
-                    {vote_average.toFixed(1)}{' '}
-                    <i className="fa-solid fa-star"></i>
-                  </span>
-                </>
+                )}
+              </div>
+              {isFavorite ? (
+                <button
+                  className="btn"
+                  onClick={() => removeFromFavorites(id, movieTitle)}
+                >
+                  <AiFillHeart />
+                </button>
               ) : (
-                <div className="no-select">
-                  Movie Overview: <p>{overview}</p>
-                  <button className="info-btn" onClick={() => handleClick(id)}>
-                    Less Info
-                  </button>
-                </div>
+                <button
+                  className="btn"
+                  onClick={() =>
+                    addToFavorites(
+                      id,
+                      movieTitle,
+                      poster_path,
+                      vote_average,
+                      overview
+                    )
+                  }
+                >
+                  <AiOutlineHeart />
+                </button>
               )}
             </div>
-            {isFavorite ? (
-              <button
-                className="btn"
-                onClick={() => removeFromFavorites(id, title)}
-              >
-                <AiFillHeart />
-              </button>
-            ) : (
-              <button
-                className="btn"
-                onClick={() =>
-                  addToFavorites(id, title, poster_path, vote_average, overview)
-                }
-              >
-                <AiOutlineHeart />
-              </button>
-            )}
-          </div>
-        );
-      })}
+          );
+        }
+      )}
     </div>
   );
 }
