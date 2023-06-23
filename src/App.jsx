@@ -5,6 +5,9 @@ import Movie from './Movie';
 import Footer from './Footer';
 import Axios from 'axios';
 import { BsFillArrowUpSquareFill } from 'react-icons/bs';
+import React from 'react';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TRAILER = 'https://www.youtube.com/results?search_query=';
 const APIURL =
@@ -28,6 +31,14 @@ function App() {
   useEffect(() => {
     fetchData(APIURL + page);
   }, [page]);
+
+  function notify(value, movieName) {
+    if (value === 'success') {
+      toast.success(`${movieName} added to favorites`);
+    } else if (value === 'deleted') {
+      toast.warn(`${movieName} removed from favorites`);
+    }
+  }
 
   function fetchData(url) {
     Axios.get(url)
@@ -83,16 +94,17 @@ function App() {
           favorites,
           setShowFavorites,
           showFavorites,
+          notify,
         }}
       >
+        <ToastContainer autoClose={1000} transition={Zoom} />
         <Header />
         {showFavorites ? (
           <Movie dataToUse={favorites} />
         ) : (
           <Movie dataToUse={data} />
         )}
-
-        <Footer />
+        {!showFavorites && <Footer />}
       </AppContext.Provider>
     </>
   );

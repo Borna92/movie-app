@@ -4,7 +4,6 @@ import Movie from './Movie';
 
 function FavoritesPage() {
   const { favorites } = useContext(AppContext);
-  console.log(favorites);
 
   return (
     <div>

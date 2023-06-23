@@ -3,7 +3,7 @@ import { AppContext } from './App';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
 function Movie({ dataToUse }) {
-  const { data, TRAILER, IMGPATH, setFavorites, favorites } =
+  const { data, TRAILER, IMGPATH, setFavorites, favorites, notify } =
     useContext(AppContext);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
@@ -26,12 +26,14 @@ function Movie({ dataToUse }) {
   }
 
   function addToFavorites(id, title, poster_path, vote_average, overview) {
+    notify('success', title);
     const newMovie = { id, title, poster_path, vote_average, overview };
     setFavorites((prevFavorites) => [...prevFavorites, newMovie]);
     localStorage.setItem('favorites', JSON.stringify([...favorites, newMovie]));
   }
 
-  function removeFromFavorites(id) {
+  function removeFromFavorites(id, title) {
+    notify('deleted', title);
     const newList = favorites.filter((movie) => movie.id !== id);
     setFavorites(newList);
     localStorage.setItem('favorites', JSON.stringify(newList));
@@ -75,7 +77,10 @@ function Movie({ dataToUse }) {
               )}
             </div>
             {isFavorite ? (
-              <button className="btn" onClick={() => removeFromFavorites(id)}>
+              <button
+                className="btn"
+                onClick={() => removeFromFavorites(id, title)}
+              >
                 <AiFillHeart />
               </button>
             ) : (

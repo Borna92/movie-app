@@ -10,6 +10,7 @@ function Search() {
     setShowFavorites(false);
     const url = inputRef.current && SEARCHAPI + inputRef.current.value;
     fetchData(url);
+    inputRef.current.value = '';
   }
 
   return (
