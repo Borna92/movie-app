@@ -1,6 +1,6 @@
 import { FaBars } from 'react-icons/fa';
 import { useState, useContext } from 'react';
-import { AiFillHome, AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { RiMovie2Fill } from 'react-icons/ri';
 import { MdLocalMovies } from 'react-icons/md';
 import { AppContext } from './App';
