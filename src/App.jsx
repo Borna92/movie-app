@@ -99,6 +99,7 @@ function App() {
           showFavorites,
           notify,
           setShowShows,
+          showShows,
         }}
       >
         <ToastContainer autoClose={1000} transition={Zoom} />

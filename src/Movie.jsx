@@ -49,8 +49,15 @@ function Movie({ dataToUse }) {
 
           return (
             <div className="movie" key={id}>
-              <a href={TRAILER + title + ' trailer'} target="_blank">
-                <img src={IMGPATH + poster_path} alt={movieTitle} />
+              <a href={TRAILER + movieTitle + ' trailer'} target="_blank">
+                <img
+                  src={
+                    poster_path
+                      ? IMGPATH + poster_path
+                      : 'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg'
+                  }
+                  alt={movieTitle}
+                />
               </a>
               <div className="title">
                 {!isSelected ? (
