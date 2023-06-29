@@ -30,6 +30,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [isVisible, setIsVisible] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     showShows ? fetchData(SHOWSAPI + page) : fetchData(APIURL + page);
@@ -50,7 +51,7 @@ function App() {
         setData(responseData);
       })
       .catch((error) => {
-        setError(error);
+        setError(true);
       });
   }
 
@@ -74,6 +75,10 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (error) {
+    return <h1>No movies found</h1>;
+  }
 
   return (
     <>
