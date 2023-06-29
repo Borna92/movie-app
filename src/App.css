@@ -220,3 +220,8 @@ body {
   right: 2rem;
   z-index: 1;
 }
+
+h1 {
+  text-align: center;
+  color: #fff;
+}

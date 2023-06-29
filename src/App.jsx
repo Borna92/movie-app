@@ -51,6 +51,7 @@ function App() {
         setData(responseData);
       })
       .catch((error) => {
+        console.log(error);
         setError(true);
       });
   }
@@ -75,10 +76,6 @@ function App() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  if (error) {
-    return <h1>No movies found</h1>;
-  }
 
   return (
     <>
@@ -109,12 +106,13 @@ function App() {
       >
         <ToastContainer autoClose={1000} transition={Zoom} />
         <Header />
+        {/* {data.length === 0 && <h1>No Movies Found</h1>} */}
         {showFavorites ? (
           <Movie dataToUse={favorites} />
         ) : (
           <Movie dataToUse={data} />
         )}
-        {!showFavorites && <Footer />}
+        {!showFavorites && data.length > 0 && <Footer />}
       </AppContext.Provider>
     </>
   );

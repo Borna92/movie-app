@@ -39,6 +39,10 @@ function Movie({ dataToUse }) {
     localStorage.setItem('favorites', JSON.stringify(newList));
   }
 
+  if (data.length === 0) {
+    return <h1>No movies or shows found</h1>;
+  }
+
   return (
     <div className="movies-container">
       {dataToUse.map(
